@@ -27,9 +27,9 @@ class MeasurementRepository extends ServiceEntityRepository
     {
         $qb = $this->createQueryBuilder('m');
         $qb->where('m.location = :location')
-            ->setParameter('location', $location)
-            ->andWhere('m.date > :now')
-            ->setParameter('now', date('Y-m-d'));
+            ->setParameter('location', $location);
+//            ->andWhere('m.date > :now')
+//            ->setParameter('now', date('Y-m-d'));
 
         $query = $qb->getQuery();
         return $query->getResult();

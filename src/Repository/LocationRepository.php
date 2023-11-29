@@ -34,6 +34,20 @@ class LocationRepository extends ServiceEntityRepository
             ->getOneOrNullResult();
     }
 
+    /**
+     * @throws NonUniqueResultException
+     */
+    public function findByCountryAndCity(string $countryCode, string $city): Location
+    {
+        return $this->createQueryBuilder('l')
+            ->andWhere('l.country = :countryCode')
+            ->andWhere('l.city = :city')
+            ->setParameter('countryCode', $countryCode)
+            ->setParameter('city', $city)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
 
 //    /**
 //     * @return Location[] Returns an array of Location objects
